@@ -1,0 +1,67 @@
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #ffffff;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  z-index: 1000;
+  font-size: 13px;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-menu {
+  display: flex;
+  gap: 16px;
+}
+
+.menu-item {
+  position: relative;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: #f5f5f5;
+}
+
+.menu-item.active {
+  background: #f0f0f0;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.submenu-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333333;
+}
+
+.submenu-item:hover {
+  background: #f5f5f5;
+}
+
+.shortcut {
+  margin-left: auto;
+  color: #666666;
+} 
