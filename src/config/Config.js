@@ -14,7 +14,8 @@ export default class Config {
     display: {
       showDots: true,
       showGrid: true,
-      showAngleMeasurements: true
+      showAngleMeasurements: true,
+      darkMode: false
     },
     colors: {
       gridLines: '#E2E8F0',
@@ -52,12 +53,15 @@ export default class Config {
   static load() {
     const savedConfig = localStorage.getItem('appConfig');
     if (savedConfig) {
-      return JSON.parse(savedConfig);
+      const parsedConfig = JSON.parse(savedConfig);
+      console.log('Loaded config:', parsedConfig);
+      return parsedConfig;
     }
     return this.DEFAULT_CONFIG;
   }
 
   static save(config) {
+    console.log('Saving config:', config);
     localStorage.setItem('appConfig', JSON.stringify(config));
   }
 } 

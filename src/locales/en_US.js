@@ -74,9 +74,10 @@ export const en_US = {
     display: {
       title: 'Display',
       visibility: 'Visibility',
-      showDots: 'Show Points',
+      showDots: 'Show Dots',
       showGrid: 'Show Grid',
-      showAngleMeasurements: 'Show Angle Measurements'
+      showAngleMeasurements: 'Show Angle Measurements',
+      darkMode: 'Dark Mode'
     },
     colors: {
       angle: 'Angle Color'

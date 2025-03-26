@@ -4,15 +4,15 @@
   left: 0;
   right: 0;
   height: 30px;
-  background: #ffffff;
-  color: #333333;
+  background: var(--panel-bg);
+  color: var(--text-color);
   display: flex;
   align-items: center;
   padding: 0 8px;
   z-index: 1000;
   font-size: 13px;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px var(--shadow-color);
 }
 
 .toolbar-menu {
@@ -30,23 +30,24 @@
 }
 
 .menu-item:hover {
-  background: #f5f5f5;
+  background: var(--hover-bg);
 }
 
 .menu-item.active {
-  background: #f0f0f0;
+  background: var(--active-bg);
 }
 
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
   min-width: 200px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow-color);
   border-radius: 4px;
   margin-top: 2px;
+  color: var(--text-color);
 }
 
 .submenu-item {
@@ -54,14 +55,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #333333;
+  color: var(--text-color);
 }
 
 .submenu-item:hover {
-  background: #f5f5f5;
+  background: var(--hover-bg);
 }
 
 .shortcut {
   margin-left: auto;
-  color: #666666;
+  color: var(--secondary-text);
+  opacity: 0.7;
+}
+
+.toolbar button {
+  color: var(--text-color);
+}
+
+.toolbar button:hover {
+  background: var(--hover-bg);
 } 

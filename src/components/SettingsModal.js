@@ -22,7 +22,7 @@ const SECTIONS = {
   },
   display: {
     title: 'Display',
-    keys: ['showGrid', 'showDots', 'showAngleMeasurements']
+    keys: ['showGrid', 'showDots', 'showAngleMeasurements', 'darkMode']
   },
   tools: {
     title: 'Tool Settings',
@@ -86,7 +86,8 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
     display: {
       showGrid: true,
       showDots: true,
-      showAngleMeasurements: true
+      showAngleMeasurements: true,
+      darkMode: false
     },
     colors: {
       gridLines: '#E2E8F0',
@@ -155,6 +156,7 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
   if (!isOpen) return null;
 
   const handleApply = () => {
+    console.log('Applying settings:', settings);
     onApply(settings);
     onClose();
   };
@@ -164,21 +166,11 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
   };
 
   const updateNestedSetting = (path, value) => {
-    console.log('Updating setting:', path, value); 
+    console.log('Updating setting:', path, value);
     const pathParts = path.split('.');
     setSettings(prev => {
       const newSettings = { ...prev };
       let current = newSettings;
-      
-      
-      if (pathParts[0] === 'display') {
-        newSettings.display = {
-          ...prev.display,
-          [pathParts[1]]: value
-        };
-        return newSettings;
-      }
-      
       
       for (let i = 0; i < pathParts.length - 1; i++) {
         if (!current[pathParts[i]]) {
@@ -201,8 +193,11 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
         <label className="toggle-switch">
           <input
             type="checkbox"
-            checked={value}
-            onChange={e => updateNestedSetting(fullPath, e.target.checked)}
+            checked={value || false}
+            onChange={e => {
+              console.log('Toggle changed:', fullPath, e.target.checked);
+              updateNestedSetting(fullPath, e.target.checked);
+            }}
           />
           <span className="toggle-slider"></span>
         </label>
@@ -287,7 +282,7 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
         {SECTIONS.display.keys.map(key => (
           <div key={key} className="settings-label">
             <span>{i18n.t(`settings.display.${key}`)}</span>
-            {renderSettingInput(key, settings.display?.[key], 'display')}
+            {renderSettingInput(key, settings.display?.[key] || false, 'display')}
           </div>
         ))}
       </div>
@@ -296,7 +291,7 @@ const SettingsModal = ({ isOpen, onClose, onApply, config }) => {
 
   return (
     <div className="settings-modal-overlay">
-      <div className="settings-modal">
+      <div className={`settings-modal ${config?.display?.darkMode ? 'dark-mode' : ''}`}>
         <div className="modal-header">
           <h2>Settings</h2>
           <button className="close-button" onClick={onClose}>

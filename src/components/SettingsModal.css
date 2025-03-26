@@ -22,11 +22,41 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 }
 
-.settings-modal h2 {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
   font-size: 20px;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 24px;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.2s;
+}
+
+.close-button:hover {
+  background: var(--hover-bg);
+}
+
+.close-button svg {
+  width: 20px;
+  height: 20px;
 }
 
 .settings-section {
@@ -190,7 +220,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http:
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-down'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-size: 16px;
@@ -280,7 +310,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http:
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-chevron-down'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-size: 16px;
@@ -400,5 +430,77 @@ input:checked + .toggle-slider:before {
 .settings-label span {
   color: #4a5568;
   font-size: 14px;
+}
+
+/* Update the dark mode styles */
+.dark-mode .settings-modal {
+  background: var(--panel-bg);
+  color: var(--text-color);
+}
+
+.dark-mode .settings-section {
+  background: var(--bg-color);
+}
+
+.dark-mode .tool-settings {
+  background: var(--panel-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode .settings-section input[type="number"],
+.dark-mode .settings-section input[type="text"],
+.dark-mode .settings-group select {
+  background: var(--input-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.dark-mode .settings-section h3,
+.dark-mode .settings-section h4,
+.dark-mode .settings-section label,
+.dark-mode .settings-group label {
+  color: var(--text-color);
+}
+
+.dark-mode .settings-actions button {
+  background: #404040;
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.dark-mode .settings-actions button:hover {
+  background: #4d4d4d;
+}
+
+.dark-mode .toggle-slider {
+  background-color: var(--input-bg);
+}
+
+.dark-mode input:checked + .toggle-slider {
+  background-color: #3182ce;
+}
+
+.dark-mode .toggle-slider:before {
+  background-color: var(--text-color);
+}
+
+.dark-mode .settings-label span {
+  color: var(--text-color);
+}
+
+.dark-mode .settings-group label {
+  color: var(--text-color);
+}
+
+.dark-mode .settings-modal h2 {
+  color: var(--text-color);
+}
+
+.dark-mode .close-button {
+  color: var(--text-color);
+}
+
+.dark-mode .close-button:hover {
+  background: var(--hover-bg);
 }
  

@@ -1,3 +1,30 @@
+/* Add dark mode variables at the top */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-bg: #f5f5f5;
+  --active-bg: #e0e0e0;
+  --canvas-bg: #ffffff;
+  --secondary-text: #666666;
+  --panel-bg: #ffffff;
+  --input-bg: #ffffff;
+}
+
+:root.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --hover-bg: #2d2d2d;
+  --active-bg: #404040;
+  --canvas-bg: #121212;
+  --secondary-text: #a0a0a0;
+  --panel-bg: #242424;
+  --input-bg: #333333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,32 +36,36 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 canvas {
   display: block;
   width: 100%;
   height: 100%;
+  background: var(--canvas-bg) !important;
 }
 
 .page-control {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background: white;
+  background: var(--panel-bg);
   border-radius: 8px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
   z-index: 1000;
+  color: var(--text-color);
 }
 
 .page-control-button {
-  background: none;
-  border: 1px solid #ccc;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   width: 28px;
   height: 28px;
@@ -43,11 +74,11 @@ canvas {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  color: var(--text-color);
 }
 
 .page-control-button:hover:not(:disabled) {
-  background: #f5f5f5;
-  border-color: #999;
+  background: var(--hover-bg);
 }
 
 .page-control-button:disabled {
@@ -58,7 +89,7 @@ canvas {
 .page-count {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 14px;
-  color: #333;
+  color: var(--text-color);
   min-width: 70px;
   text-align: center;
 }
@@ -70,9 +101,9 @@ canvas {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: white;
-  border: 1px solid #e2e8f0;
-  color: #4a5568;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,10 +114,7 @@ canvas {
 }
 
 .settings-button:hover {
-  background: #f7fafc;
-  color: #2d3748;
-  border-color: #cbd5e0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--hover-bg);
 }
 
 .settings-button:active {
@@ -97,4 +125,22 @@ canvas {
 .settings-button svg {
   width: 20px;
   height: 20px;
+}
+
+.tools-window {
+  background: var(--bg-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.tool-button {
+  color: var(--text-color);
+}
+
+.tool-button:hover {
+  background: var(--hover-bg);
+}
+
+.tool-button.active {
+  background: var(--active-bg);
 } 

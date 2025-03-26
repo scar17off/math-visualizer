@@ -2,8 +2,6 @@ const PIXELS_PER_CM = 50;
 
 
 const cmToPixels = (cm) => cm * PIXELS_PER_CM;
-
-
 const pixelsToCm = (pixels) => pixels / PIXELS_PER_CM;
 
 class GeometryAPI {
@@ -161,19 +159,19 @@ export const createGeometryAPI = (renderer) => {
   
   console.log('Geometry API available! All measurements are in centimeters.');
   console.log('Try these commands:');
-  console.log('const p1 = geometryAPI.createPoint(2, 2, "A")  
-  console.log('const p2 = geometryAPI.createPoint(4, 2, "B")  
+  console.log('const p1 = geometryAPI.createPoint(2, 2, "A")');
+  console.log('const p2 = geometryAPI.createPoint(4, 2, "B")');
   console.log('const line = geometryAPI.connectPoints(p1, p2)');
-  console.log('line.getLengthCm()  
-  console.log('p1.getCmCoordinates()  
-  console.log('geometryAPI.getDistance(p1, p2)  
-  console.log('geometryAPI.getAngle(p1, p2)  
+  console.log('line.getLengthCm()');
+  console.log('p1.getCmCoordinates()');
+  console.log('geometryAPI.getDistance(p1, p2)');
+  console.log('geometryAPI.getAngle(p1, p2)');
   console.log('geometryAPI.toggleAngle(p1)');
   console.log('geometryAPI.getAllPoints()');
   console.log('geometryAPI.clear()');
-  console.log('const label = geometryAPI.createLabel(2, 2, "Hello")  
-  console.log('geometryAPI.getLabels()  
-  console.log('geometryAPI.removeLabel(label)  
+  console.log('const label = geometryAPI.createLabel(2, 2, "Hello")');
+  console.log('geometryAPI.getLabels()');
+  console.log('geometryAPI.removeLabel(label)');
 
   return api;
 }; 

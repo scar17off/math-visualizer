@@ -80,11 +80,22 @@ function App() {
     }
   }, [rendererRef.current]);
 
+  useEffect(() => {
+    const isDarkMode = config?.display?.darkMode;
+    console.log('Dark mode state:', isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+    }
+  }, [config?.display?.darkMode]);
+
   const handlePageCountChange = (newCount) => {
     setPageCount(newCount);
   };
 
   const handleSettingsApply = (newSettings) => {
+    console.log('New settings being applied:', newSettings);
     Config.save(newSettings);
     setConfig(newSettings);
     

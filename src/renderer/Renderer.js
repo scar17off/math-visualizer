@@ -4,7 +4,7 @@ import {
   SelectTool, PenTool, EraserTool, LineTool, PointTool,
   LabelTool, CurveTool, TOOL_TYPES
 } from '../tools/Tools';
-import { StrokeEffect, PointEffect, LineEffect, EraserEffect } from '../tools/Effects';
+import { StrokeEffect, PointEffect, LineEffect } from '../tools/Effects';
 import Config from '../config/Config';
 import { Point, Line, Stroke } from '../items/DrawableItem';
 
@@ -166,10 +166,9 @@ class Renderer {
 
   drawNotebookPage() {
     const {
-      ctx, GRID_SIZE, LINE_COLOR, MARGIN_COLOR, BORDER_COLOR, BORDER_WIDTH,
+      ctx, GRID_SIZE, BORDER_WIDTH,
       CORNER_RADIUS, GRID_LINE_BLUR, GRID_LINE_WIDTH, MARGIN_LINE_BLUR, MARGIN_LINE_WIDTH
     } = this;
-
 
     for (let page = 0; page < this.pageCount; page++) {
       const offsetX = page * this.PAGE_WIDTH;
@@ -177,10 +176,8 @@ class Renderer {
       const isRightPage = page === this.pageCount - 1;
       const isMiddlePage = !isLeftPage && !isRightPage;
 
-
       ctx.fillStyle = '#FFFFFF';
       if (isMiddlePage) {
-
         ctx.fillRect(offsetX, 0, this.PAGE_WIDTH, this.PAGE_HEIGHT);
       } else {
         this.drawRoundedRect(
@@ -195,7 +192,6 @@ class Renderer {
         );
       }
       ctx.fill();
-
 
       ctx.save();
       if (isMiddlePage) {
@@ -214,33 +210,33 @@ class Renderer {
       }
       ctx.clip();
 
+      const gridLineColor = '#E2E8F0';
+      const marginLineColor = '#FF9999';
+      const borderLineColor = '#000000';
 
       if (this.config.display?.showGrid !== false) {
-
         for (let x = GRID_SIZE; x < this.PAGE_WIDTH; x += GRID_SIZE) {
           this.drawBlurryLine(
             ctx,
             offsetX + x, 0,
             offsetX + x, this.PAGE_HEIGHT,
-            LINE_COLOR,
+            gridLineColor,
             GRID_LINE_WIDTH,
             GRID_LINE_BLUR
           );
         }
-
 
         for (let y = GRID_SIZE; y < this.PAGE_HEIGHT; y += GRID_SIZE) {
           this.drawBlurryLine(
             ctx,
             offsetX, y,
             offsetX + this.PAGE_WIDTH, y,
-            LINE_COLOR,
+            gridLineColor,
             GRID_LINE_WIDTH,
             GRID_LINE_BLUR
           );
         }
       }
-
 
       if (isLeftPage || isRightPage) {
         const marginX = isLeftPage ?
@@ -251,17 +247,15 @@ class Renderer {
           ctx,
           marginX, 0,
           marginX, this.PAGE_HEIGHT,
-          MARGIN_COLOR,
+          marginLineColor,
           MARGIN_LINE_WIDTH,
           MARGIN_LINE_BLUR
         );
       }
 
-
       ctx.restore();
 
-
-      ctx.strokeStyle = BORDER_COLOR;
+      ctx.strokeStyle = borderLineColor;
       ctx.lineWidth = BORDER_WIDTH;
 
       if (isMiddlePage) {
@@ -648,6 +642,23 @@ class Renderer {
     this.drawingHistory.curves = this.drawingHistory.curves || [];
     this.drawingHistory.curves.push(curve);
     return curve;
+  }
+
+  drawNotebookBackground() {
+    this.ctx.save();
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fillRect(0, 0, this.PAGE_WIDTH, this.PAGE_HEIGHT);
+    this.ctx.restore();
+  }
+
+  render() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawNotebookBackground();
+    this.drawNotebookPage();
+    this.drawItems();
+    if (this.currentTool) {
+      this.currentTool.draw(this.ctx);
+    }
   }
 }
 
