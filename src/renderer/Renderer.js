@@ -170,13 +170,21 @@ class Renderer {
       CORNER_RADIUS, GRID_LINE_BLUR, GRID_LINE_WIDTH, MARGIN_LINE_BLUR, MARGIN_LINE_WIDTH
     } = this;
 
+    // Force white background for notebook pages
+    const paperColor = '#FFFFFF';
+    const gridLineColor = '#E2E8F0';
+    const marginLineColor = '#FF9999';
+    const borderLineColor = '#000000';
+    const shadowColor = 'rgba(0, 0, 0, 0.1)';
+
     for (let page = 0; page < this.pageCount; page++) {
       const offsetX = page * this.PAGE_WIDTH;
       const isLeftPage = page === 0;
       const isRightPage = page === this.pageCount - 1;
       const isMiddlePage = !isLeftPage && !isRightPage;
 
-      ctx.fillStyle = '#FFFFFF';
+      // Set paper background
+      ctx.fillStyle = paperColor;
       if (isMiddlePage) {
         ctx.fillRect(offsetX, 0, this.PAGE_WIDTH, this.PAGE_HEIGHT);
       } else {
@@ -209,10 +217,6 @@ class Renderer {
         );
       }
       ctx.clip();
-
-      const gridLineColor = '#E2E8F0';
-      const marginLineColor = '#FF9999';
-      const borderLineColor = '#000000';
 
       if (this.config.display?.showGrid !== false) {
         for (let x = GRID_SIZE; x < this.PAGE_WIDTH; x += GRID_SIZE) {
@@ -293,7 +297,7 @@ class Renderer {
 
       if (!isRightPage) {
         ctx.save();
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+        ctx.shadowColor = shadowColor;
         ctx.shadowBlur = 5;
         ctx.shadowOffsetX = 2;
         ctx.beginPath();
